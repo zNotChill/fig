@@ -1,44 +1,17 @@
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import { API } from "./ts/api/Core.ts";
-import { loadData, sharedState } from "./ts/Data.ts";
-
-let api: API;
-
-// TODO: make this work better
-loadData().then((data) => {
-  api = new API(sharedState.token, sharedState.clientID);
-}).catch((error) => {
-  console.error(error);
-})
+import "./app/global.css";
+import Navbar from "./components/Navbar.tsx";
+import RecentlyPlayed from "./components/RecentlyPlayed.tsx";
+import TrackBar from "./components/TrackBar.tsx";
 
 function App() {
-  
-  api.getMe().then((data) => {
-    console.log(data);
-  }).catch((error) => {
-    console.error(error);
-  })
-
   return (
-    <div className="container">
-      <h1>Welcome to Tauri!</h1>
+    <div className="app">
+      <Navbar />
+      <div className="body-content">
+        <RecentlyPlayed />
 
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <TrackBar />
       </div>
-
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-
     </div>
   );
 }

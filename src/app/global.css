@@ -1,0 +1,154 @@
+
+/* Fonts */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/Inter-Italic.woff2);
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/Inter-Medium.woff2);
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/Inter-SemiBold.woff2);
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/Inter-Bold.woff2);
+}
+
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --base-hue: 200;
+  --hue-1: hsl(var(--base-hue), 10%, 10%);
+  --hue-2: hsl(var(--base-hue), 10%, 20%);
+  --hue-3: hsl(var(--base-hue), 10%, 30%);
+  --hue-4: hsl(var(--base-hue), 10%, 40%);
+  --hue-5: hsl(var(--base-hue), 10%, 50%);
+  --hue-6: hsl(var(--base-hue), 10%, 60%);
+  --hue-7: hsl(var(--base-hue), 10%, 70%);
+  --hue-8: hsl(var(--base-hue), 10%, 80%);
+  --hue-9: hsl(var(--base-hue), 10%, 90%);
+  --hue-10: hsl(var(--base-hue), 10%, 100%);
+
+  --light-1: hsl(var(--base-hue), 10%, 95%);
+  --light-2: hsl(var(--base-hue), 10%, 90%);
+  --light-3: hsl(var(--base-hue), 10%, 85%);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--light-3);
+  background-color: var(--hue-1);
+}
+
+/* Navbar */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--hue-2);
+}
+
+.navbar .navbar-items {
+  display: inline-flex;
+  gap: 20px;
+  color: var(--light-3);
+}
+
+/* Cards */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin: 10px;
+}
+
+.card {
+  background-color: var(--hue-2);
+  border-radius: 5px;
+  padding: 20px;
+  color: var(--light-3);
+}
+
+.card:hover {
+  background-color: var(--hue-3);
+  transition: all 0.3s ease-in-out;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-image {
+  margin-bottom: 5px;
+  width: min-content;
+}
+
+.card .card-image:hover {
+  filter: brightness(0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+.card .card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  /* add ... */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .card-subtitle {
+  font-size: 0.7rem;
+}
+
+/* Sections */
+
+.section .section-title {
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* taskbar */
+
+.trackbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--hue-2);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}

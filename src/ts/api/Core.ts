@@ -1,16 +1,12 @@
-import fetch from "axios";
 import socketio from "socket.io-client";
 
 export class API {
   private token: string
-  private url: string
   private clientID: string
-  private headers: any
   private socket: any
 
   constructor(token: string, clientID: string) {
     this.token = token
-    this.url = "https://api-v2.soundcloud.com"
     this.clientID = clientID
 
     // Connect to socket.io server
@@ -24,7 +20,7 @@ export class API {
   }
 
   async getMe() {
-    const response = this.socket.emit("getMe", JSON.stringify({
+    this.socket.emit("getMe", JSON.stringify({
       token: this.token
     }))
 
@@ -41,7 +37,7 @@ export class API {
   }
 
   async getRecentlyPlayed(limit = 10, offset = 0) {
-    const response = this.socket.emit("getRecentlyPlayed", JSON.stringify({
+    this.socket.emit("getRecentlyPlayed", JSON.stringify({
       token: this.token,
       limit: limit,
       offset: offset
@@ -67,12 +63,21 @@ export class API {
   }
 
   async getTrackStreamURL(url: string) {
-    const response = this.socket.emit("getTrackStreamURL", JSON.stringify({
+    this.socket.emit("getTrackStreamURL", JSON.stringify({
       token: this.token,
       url: url,
       clientId: this.clientID
     }))
 
-    return response
+    return new Promise((resolve, reject) => {
+      this.socket.on("getTrackStreamURL", (data: any) => {
+        if(data.error) {
+          reject(data.error)
+        } else {
+          resolve(data)
+        }
+      })
+    })
+
   }
 }
