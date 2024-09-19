@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Section from "./Section";
-import { api, dataLoaded } from "../ts/Data";
+import { api, dataLoaded, sessionStorage } from "../ts/Data";
 import SongCard from "./SongCard";
+import { APISong } from "../interfaces/Tracks";
 
 export default function RecentlyPlayed() {
   const [recentlyPlayed, setRecentlyPlayed] = useState([]) as [any, any];
@@ -12,9 +13,10 @@ export default function RecentlyPlayed() {
     // continuously check if data is loaded
     let interval = setInterval(() => {
       if (!loaded && dataLoaded) {
-        api.getRecentlyPlayed().then((data) => {
+        api.getRecentlyPlayed().then((data: any) => {
           setRecentlyPlayed(data);
           setLoaded(true);
+          sessionStorage.loadedRecents = data;
 
           clearInterval(interval);
         })
@@ -27,7 +29,7 @@ export default function RecentlyPlayed() {
   return (
     <Section title="Recently Played" children={
       <div className="card-grid">
-        {collection.map((item: any) => {
+        {collection.map((item: APISong) => {
           return (
             <SongCard song={item} />
           )

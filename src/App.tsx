@@ -1,7 +1,7 @@
 import "./app/global.css";
 import Navbar from "./components/Navbar.tsx";
+import Player from "./components/Player.tsx";
 import RecentlyPlayed from "./components/RecentlyPlayed.tsx";
-import TrackBar from "./components/TrackBar.tsx";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <div className="body-content">
         <RecentlyPlayed />
 
-        <TrackBar />
+        <Player />
       </div>
     </div>
   );

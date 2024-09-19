@@ -12,6 +12,8 @@
   "dependencies": {
     "@tauri-apps/api": "^1",
     "autoprefixer": "^10.4.19",
+    "discord-rpc": "^4.0.1",
+    "hls.js": "^1.5.14-0.canary.10606",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
+    "@types/discord-rpc": "^4.0.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.2.1",

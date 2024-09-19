@@ -1,11 +1,12 @@
 import { APISong } from "../interfaces/Tracks";
+import { playTrack } from "../ts/Track";
 
 export default function SongCard(props: { song: APISong }) {
   const { song } = props;
   const track = song["track"];
 
   return (
-    <div key={track["id"]} className="track card">
+    <div key={track["permalink"]} className="track card" onClick={() => playTrack(track)}>
       <div className="card-image track-image">
         <img src={track["artwork_url"]} width={70} height={70} />
       </div>

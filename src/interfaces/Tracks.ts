@@ -41,7 +41,7 @@ export interface APITrack {
   playback_count: number,
   policy: string,
   public: boolean,
-  publisher_metadata: {},
+  publisher_metadata: PublisherMetadata,
   purchase_title: string,
   release_date: string,
   reposts_count: number,
@@ -66,4 +66,11 @@ export interface APISong {
   track: APITrack,
   track_id: number,
   played_at: string,
+}
+
+export interface PublisherMetadata {
+  album_title: string;
+  contains_music: boolean;
+  id: number;
+  urn: string;
 }

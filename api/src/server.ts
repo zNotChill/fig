@@ -1,6 +1,7 @@
 // socket.io server
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { clearActivity, setSongActivity } from './DiscordRPC.js';
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
@@ -85,32 +86,66 @@ io.on('connection', (socket) => {
 
 
   socket.on("getTrackStreamURL", async (data) => {
-    let parsedData;
-    try { parsedData = JSON.parse(data); } catch(e) { return; }
+    try {
+      let parsedData;
+      try { parsedData = JSON.parse(data); } catch(e) { return; }
+    
+      const { token, clientId, url } = parsedData;
+      if(!token || !clientId) {
+        return socket.emit("getTrackStreamURL", {
+          error: "No token provided"
+        })
+      }
   
-    const { token, clientId, url } = parsedData;
-    if(!token || !clientId) {
-      return socket.emit("getTrackStreamURL", {
-        error: "No token provided"
+      const response = await fetch(`${url}?client_id=${clientId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `OAuth ${token}`
+        },
+      })
+  
+      console.log(`getTrackStreamURL: ${response.status}`);
+      socket.emit("getTrackStreamURL", await response.json())
+    } catch (error) {
+      console.error(error);
+      socket.emit("getTrackStreamURL", {
+        error: error
       })
     }
-
-    const response = await fetch(`${url}?client_id=${clientId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `OAuth ${token}`
-      },
-      body: JSON.stringify({
-        useURL: true
-      })
-    })
-
-    console.log(`getTrackStreamURL: ${response.status}`);
-    socket.emit("getTrackStreamURL", await response.json())
   });
 
+  socket.on("setDiscordActivity", async (data) => {
+    try {
+      let parsedData;
+      try { parsedData = JSON.parse(data); } catch(e) { return; }
+    
+      const { token, track } = parsedData;
+      if(!token) {
+        return socket.emit("setDiscordActivity", {
+          error: "No token provided"
+        })
+      }
+  
+      setSongActivity(track);
+      socket.emit("setDiscordActivity", track)
+    } catch (error) {
+      console.error(error);
+      socket.emit("setDiscordActivity", {
+        error: error
+      })
+    }
+  });
 
-
+  socket.on("clearDiscordActivity", async (data) => {
+    try {
+      clearActivity();
+    } catch (error) {
+      console.error(error);
+      socket.emit("clearDiscordActivity", {
+        error: error
+      })
+    }
+  });
 
 });
 

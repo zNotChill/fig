@@ -1,4 +1,5 @@
 import socketio from "socket.io-client";
+import { APITrack } from "../../interfaces/Tracks";
 
 export class API {
   private token: string
@@ -78,6 +79,12 @@ export class API {
         }
       })
     })
+  }
 
+  async setDiscordActivity(track: APITrack) {
+    this.socket.emit("setDiscordActivity", JSON.stringify({
+      token: this.token,
+      track: track
+    }))
   }
 }
