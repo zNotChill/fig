@@ -1,4 +1,4 @@
-import { APISong, APITrack } from "../interfaces/Tracks";
+import { APITrack } from "../interfaces/Tracks";
 import { playTrack } from "../ts/Track";
 
 export default function SmallSongCard(props: { track: APITrack }) {

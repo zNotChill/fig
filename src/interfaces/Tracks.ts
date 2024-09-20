@@ -74,3 +74,9 @@ export interface PublisherMetadata {
   id: number;
   urn: string;
 }
+
+export interface AudioState {
+  currentTime: number;
+  duration: number;
+  isPlaying: boolean;
+}

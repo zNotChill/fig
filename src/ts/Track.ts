@@ -26,6 +26,12 @@ export function playTrack(track: APITrack) {
 }
 
 let audio = new Audio();
+
+
+export function getAudio() {
+  return audio;
+}
+
 export function playAudio(url: string) {
   audio.src = url;
   console.log(sharedState);
@@ -36,4 +42,18 @@ export function playAudio(url: string) {
 
 export function pauseAudio() {
   audio.pause();
+}
+
+export function moveTo(time: number) {
+  audio.currentTime = time;
+}
+
+export function togglePlayback() {
+  if (audio.paused) {
+    audio.play();
+    api.clearDiscordActivity();
+  } else {
+    audio.pause();
+    api.setDiscordActivity(sessionStorage.currentTrack);
+  }
 }

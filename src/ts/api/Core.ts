@@ -87,4 +87,10 @@ export class API {
       track: track
     }))
   }
+
+  async clearDiscordActivity() {
+    this.socket.emit("clearDiscordActivity", JSON.stringify({
+      token: this.token
+    }))
+  }
 }

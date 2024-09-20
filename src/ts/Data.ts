@@ -17,7 +17,9 @@ export let sharedState = {
 
 export let sessionStorage = {
   loadedRecents: [] as any[],
-  currentTrack: {} as APITrack
+  currentTrack: {} as APITrack,
+  currentTrackTime: 0,
+  isPaused: false,
 }
 
 setInterval(() => {

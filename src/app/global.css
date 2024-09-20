@@ -104,6 +104,7 @@ body {
   border-radius: 5px;
   padding: 0px;
   color: var(--light-3);
+  height: 40px;
 }
 
 .card:hover {
@@ -176,4 +177,45 @@ body {
 
 .horizontal-center {
   justify-content: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: var(--hue-3);
+  border-radius: 5px;
+  position: relative;
+}
+
+.progress-bar .progress {
+  height: 5px;
+  background-color: var(--hue-7);
+  border-radius: 5px;
+}
+
+.trackbar .main {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  width: 500px;
+}
+
+.trackbar .main .progress-time {
+  width: 120px;
+}
+
+.button {
+  background-color: var(--hue-4);
+  color: var(--light-3);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: var(--hue-5);
 }
